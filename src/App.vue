@@ -170,7 +170,7 @@
 			</div>
 			
 			<div v-for="(item, index) in this.$store.state.song_sheet" :key="index" class="list_music">
-				<span @click="replace_music(item, index)">{{item.name}}</span>
+				<span @click="replace_music(item, index)" :class="[indexMusic == index ? 'red_lstMusic' : null]">{{item.name}}</span>
 				<div class="dele" @click="dele_one(item, index)"><img src="./assets/delete/删除.png" alt="删除" ></div>
 			</div>
 		</van-popup>
@@ -358,7 +358,8 @@
 					this.Progress_change()
 				}).catch(()=> {
 					this.newlrc = []
-					this.$refs.lrc_p.innerHTML = "暂无歌词"
+					// this.$refs.lrc_p.innerHTML = "暂无歌词"
+					this.lrc_content = "暂无歌词"
 				})
 			},
 			
@@ -413,7 +414,7 @@
 			//点击删除一首歌
 			dele_one(item, index) {
 				if(index < this.$store.state.index) {
-					this.$store.state.index--
+					--this.$store.state.index
 				}
 				else if(this.$store.state.song_sheet.length == 1) {
 					this.$store.state.song_sheet = []
@@ -422,7 +423,12 @@
 					this.show_list = false
 				}
 				else if(index == this.$store.state.index) {
-					this.$store.state.music = this.$store.state.song_sheet[index + 1]
+					if(index == this.$store.state.song_sheet.length - 1) {
+						this.$store.state.music = this.$store.state.song_sheet[0]
+						this.$store.state.index = 0
+					}else{
+						this.$store.state.music = this.$store.state.song_sheet[index + 1]
+					}	
 				}
 				this.$store.state.song_sheet.splice(index, 1)
 			},
@@ -471,6 +477,11 @@
 				let total_sec = Math.round(sec % 60)
 				return total_sec >= 10 ? total_sec : "0" + total_sec
 			},
+
+			//当前播放歌曲下标
+			indexMusic() {
+				return this.$store.state.index
+			}
 		},
 				
 		watch: {
@@ -966,13 +977,24 @@
 				text-overflow: ellipsis;
 				white-space: nowrap;
 			}
+
+			.red_lstMusic {
+				display: inline-block;
+				width: 85%;
+				height: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				color: red;
+			}
 		}
+		
 
 		.dele {
 			width: 10%;
 			float: right;
 			padding-right: 0.3rem;
-			
+
 			img{
 				width: .7rem;
 				height: .7rem;

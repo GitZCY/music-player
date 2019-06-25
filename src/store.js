@@ -60,8 +60,19 @@ export default new Vuex.Store({
         state.song_sheet.push(...value.list);
         state.index = value.index;
       } else {
-        state.song_sheet.push(...value.list);
-        state.index = state.song_sheet.length - 1;
+        if (this.state.song_sheet.length == 0) {
+          state.song_sheet.push(...value.list);
+          state.index = state.song_sheet.length - 1;
+        } else {
+          for (let i = 0; i < this.state.song_sheet.length; i++) {
+            if (this.state.song_sheet[i].id == value.list[0].id) {
+              console.log("重复");
+              return;
+            }
+          }
+          state.song_sheet.push(...value.list);
+          state.index = state.song_sheet.length - 1;
+        }
       }
       //记录歌曲及下标
       state.music = value.item;
