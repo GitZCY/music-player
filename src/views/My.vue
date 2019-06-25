@@ -205,7 +205,6 @@
 					url: 'http://localhost:3000/user/follows?uid=' + this.$store.state.user_infor[0].userId
 				}).then((r)=> {
 					this.people.push(r.data.follow)
-					console.log("关注的人this.people", this.people)
 				});
 
 				//历史播放记录

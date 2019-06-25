@@ -25,6 +25,7 @@
 		margin: 0.2rem auto 0.4rem;
 		border-radius: 15px;
 		overflow: hidden;
+
 		.seach{
 			display: inline-block;
 			width: 88%;
@@ -32,6 +33,7 @@
 			padding-left: 0.3rem;
 			line-height: 5.5vm;
 			float: left;
+			
 			input{
 				width: 100%;
 				height: 100%;
@@ -41,12 +43,14 @@
 				padding: 0;
 			}
 		}
+
 		.seach_img{
 			width: 0.45rem;
 			height: 100%;
 			display: inline-block;
 			float: left;
 			position: relative;
+			
 			img{
 				width: 0.45rem;
 				height: 0.45rem;

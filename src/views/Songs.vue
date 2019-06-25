@@ -70,21 +70,13 @@
 				
 				this.splic_list_fw = this.list[0].slice(0, 4)
 				this.splic_list = this.list[0].slice(4)
-				// this.splic_list_fw.push(this.list[0].slice(0, 4))
-				// this.splic_list = this.list.splice(0, 4)
-				// console.log(this.list[0].slice(0, 4))
-				// console.log(this.splic_list[0].slice(4))
-				// console.log(this.splic_list_fw)
-				// console.log(this.splic_list)
 			}).catch(()=> {
 				console.log("请求超时")
 			})
 		},
 		
 		computed: {
-			// sp_list() {
-			// 	return this.list.splice(0, 4)
-			// }
+
 		}
 	}
 </script>

@@ -52,18 +52,14 @@
                             type: "GET",
                             url: "http://localhost:3000/login/cellphone?phone=" + tex + "&password=" + pwd, 
                         }).then(response => {
-                            console.log("response=>", response)
 							let name = 'pid'
 							let value = response.data.bindings[0].userId
 							var cookieText = encodeURIComponent(name) + "=" + 
 											 encodeURIComponent(value) + "; expires=" 
 											 + 1
-							document.cookie = cookieText;
-							
+							document.cookie = cookieText;		
 							this.$store.state.user_infor.push(response.data.profile) 
-							console.log(this.$store.state.user_infor)
 							this.$store.state.user = true
-							console.log(this.$store.state.user)
 							this.$router.push({name: "My"})
 							if(this.$store.state.music.length != 0) {
 								this.$store.state.bottom_Show = true

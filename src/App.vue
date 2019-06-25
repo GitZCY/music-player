@@ -241,6 +241,10 @@
 					return
 				}
 				this.$refs.control.currentTime = this.value / 100 * time
+
+				this.Progress_change()
+				console.log(this.lrc_content)
+				console.log(this.lrc_time)
 			},
 			
 			//改变歌音量
@@ -271,7 +275,7 @@
 				let el = this.$refs.control
 				let time = this.information.dt / 1000
 
-				el.addEventListener("timeupdate", ()=> { //播放时间改变   这个会一直打印
+				el.addEventListener("timeupdate", ()=> { 
 					let val = el.currentTime / time * 100
 					this.value = val
 
@@ -287,6 +291,7 @@
 							this.lrc_time = this.newlrc[i].time
 						}
 					}
+					this.scroll.scrollToElement(document.querySelector(".lrc_text"), 500, false, true)
 				});
 			},
 					
@@ -331,7 +336,7 @@
 				//音乐播放地址
 				this.$refs.play_icon.src = require("../src/assets/play/暂停.png")
 				this.$store.play = 1
-						
+
 				//进度条方法
 				this.Progress_change()
 			},
@@ -344,17 +349,16 @@
 					url: URL,
 				}).then(r => {
 					let arr = lrc.lrcFormat(r.data.lrc.lyric)
-
 					this.newlrc = arr
-					console.log("newlrc", this.newlrc)
-					this.lrc_content = arr[0].lrcCN
+
+					this.lrc_content = this.newlrc[0].lrcCN
+					this.lrc_time = this.newlrc[0].time
 
 					//进度条方法
 					this.Progress_change()
 				}).catch(()=> {
 					this.newlrc = []
 					this.$refs.lrc_p.innerHTML = "暂无歌词"
-					console.log(this.$refs.lrc_p.innerHTML)
 				})
 			},
 			
@@ -517,15 +521,12 @@
 				this.$refs.control.volume = this.$store.state.voice_size / 100
 				this.$refs.control.autoplay = "autoplay"
 			},
-			
-			beetScroll() {
-				this.scroll.scrollToElement('.lrc_text', 0.5)
-			},
 
-			//监听歌词
-			lrc_time(n, o) {
-				this.scroll.scrollToElement(document.querySelector(".lrc_text"), 0.5, false, true)
-			}
+			show(n, o) {
+				if(!this.show) {
+					this.scroll.scrollToElement(document.querySelector(".lrc_text"), 500, false, true)
+				}
+			},
 		},
 				
 		created() {
@@ -757,9 +758,11 @@
 		.voice {
 			width: 7.995735rem;
 			margin: 0.7rem auto 0;
+
 			.btn_voice {
 				width: 0.5rem;
 				height: 0.5rem;
+
 				img{
 					width: 100%;
 					height: 100%;
@@ -818,6 +821,7 @@
 			position: fixed;
 			bottom: 0;
 			margin-bottom: 1rem;
+
 			.img_icon {
 				display: block;
 				width: 0.746666rem;
@@ -827,36 +831,43 @@
 
 			//进度条栏
 			.Progress {
+
 				width: 8.995735rem;
 				height: 1rem;
 				margin: 0 auto;
 				margin-top: 0.6rem;
+
 				.left {
 					width: 10%;
 					height: 100%;
 					line-height: 1rem;
 					float: left;
 				}
+
 				.center {
 					width: 6.533333rem;
 					height: 100%;
 					display: inline-block;
 					margin-left: calc(~"7.195735rem / 2 - 6.533333rem / 2 ");
+
 					.Progres_bar {
 						width: 6.533333rem;
 						height: 0.036666rem;
 						background-color: white;
 						margin-top: calc(~"1rem / 2 - 0.036666rem / 2");
 					}
+
 					.btn_music{
 						width: 0.5rem;
 						height: 0.5rem;
+
 						img{
 							width: 100%;
 							height: 100%;
 						}
 					}
 				}
+
 				.right {
 					width: 10%;
 					height: 100%;
@@ -871,21 +882,26 @@
 				width: 100%;
 				height: 1.333333rem;
 				margin-top: .3rem;
+
 				.van-row {
 					height: 100%;
+				
 					.van-col {
 						height: 100%;
 					}
 				}
+
 				.bign_icon {
 					width: 0.8rem;
 					height: 0.8rem;
 					vertical-align: middle;
 					margin-top: calc(~"1.333333rem / 2 - 0.8rem / 2");
 				}
+
 				img[alt="上一首"] {
 					float: right
 				}
+
 				img[alt="播放"],
 				img[alt="暂停"] {
 					width: 1.7rem;
@@ -904,6 +920,7 @@
 			border-top-right-radius: 15px;
 			border-top-left-radius: 15px;
 		}
+
 		.list_content {
 			width: 100%;
 			line-height: 1rem;
@@ -912,24 +929,27 @@
 			padding-left: 0.3rem;
 			height: 1rem;
 			border-bottom: 1px solid #929292;
+
 			span {
 				display: inline-block;
 				width: 85%;
 				height: 100%;
 			}
+
 			.del {
 				display: inline-block;
 				width: 10%;
 				float: right;
 				padding-right: 0.35rem;
+
 				img {
 					width: 0.8rem;
 					height: 0.8rem;
 					vertical-align: middle;
 				}
 			}
-			
 		}
+
 		.list_music {
 			width: 100%;
 			height: 0.8rem;
@@ -937,6 +957,7 @@
 			padding-left: 0.3rem;
 			font-size: 15PX;
 			line-height: 0.8rem;
+
 			span {
 				display: inline-block;
 				width: 85%;
@@ -946,10 +967,12 @@
 				white-space: nowrap;
 			}
 		}
+
 		.dele {
 			width: 10%;
 			float: right;
 			padding-right: 0.3rem;
+			
 			img{
 				width: .7rem;
 				height: .7rem;

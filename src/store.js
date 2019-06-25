@@ -65,10 +65,6 @@ export default new Vuex.Store({
       }
       //记录歌曲及下标
       state.music = value.item;
-
-      console.log("state.song_sheet=>", state.song_sheet);
-      console.log("state.music=>", state.music);
-      console.log("state.index=>", state.index);
     }
   },
 

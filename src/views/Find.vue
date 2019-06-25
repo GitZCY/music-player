@@ -279,17 +279,13 @@
 			
 			//歌手详情
 			details(item) {
-				console.log(item)
 				this.axios({
 					type: "GET",
 					url: "http://localhost:3000/artist/desc?id=" + item.id
 				}).then((r)=>{
-					// console.log(r)
 					this.seachResult_Works = []
 					this.seachResult_Works.push(r.data)
 					this.item_name = item.name
-					console.log(this.seachResult_Works)
-					console.log("sdjk",this.seachResult_singer)
 					this.show = !this.show
 				}).catch(()=>{
 					console.log("请求超时")
@@ -363,14 +359,12 @@
 			Search_record() {
 				let record = this.Sear_record
 				let Local_record = JSON.parse(localStorage.getItem("Seach")) 
-				// console.log(Local_record)
 				if(Local_record == null) {
 					this.Sear_record.push(this.value)
 					localStorage.setItem("Seach", JSON.stringify(this.Sear_record))
 				}else {
 					for(let i = 0; i < Local_record.length; i++) {
 						if(this.value == Local_record[i]) {
-							console.log("重复了",this.value)
 							return
 						}
 					}
@@ -413,11 +407,7 @@
 			//播放音乐
 			play_music(item) {
 				let list = this.seachResult_single
-				// this.$store.dispatch("PushMusic", {list, index, item})
-				console.log(item)
-				console.log("list",list)
 				let index = this.index
-				console.log("index",index)
 				this.axios({
 					type: "GET",
 					url: "http://localhost:3000/song/detail?ids=" + item.id
@@ -426,7 +416,6 @@
 					let item = r.data.songs[0]
 					this.$store.dispatch("PushMusic", {list, index, item})
 					this.index++
-					console.log("r=>",r)
 				}).catch(()=>{
 					console.log("请求超时")
 				})
@@ -465,27 +454,19 @@
 			list_scoll() {
 				var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
 				if(scrollTop > 20){
-					// console.log(scrollTop)
 					this.$refs.Topbar.style.backgroundColor = "#6BC235";
 				}
 				if(scrollTop < 20){
-					// console.log(scrollTop)
 					this.$refs.Topbar.style.backgroundColor = "rgba(255, 255, 255, 0)";
 				}
 			}
 		},
 		
 		computed: {
-			//计算从19几几年到现在的时间
 			Data() {
 				return new Date(this.seachResult_Album[0].publishTime) 
 			},
-			
-			//本地存储的历史记录
-			// Local_record() {
-			// 	return JSON.parse(localStorage.getItem("Seach"))
-			// 		// return this.Sear_record
-			// }
+
 		},
 		
 		created() {
@@ -521,10 +502,7 @@
 		},
 		
 		mounted() {
-			//添加监听事件 
-			// this.$refs.name_Recom.addEventListener('scoll', this.list_scoll, true)
-			// window.addEventListener('scroll', this.list_scoll, true)
-			// console.log(this.$refs.name_Recom.scrollTop)
+
 		},
 		
 		components: {

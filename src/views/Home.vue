@@ -26,8 +26,6 @@
 </template>
 
 <script>
-    // import BottomNav from "../views/BottomNav"
-    // import { Tab, Tabs } from 'vant';
     export default {
         name: "Home",
 		

@@ -197,10 +197,8 @@
             }).then(response => {
 				//当前歌单信息   
 				this.CurrentList.push(response.data)
-				console.log("asd", response)
 				//所有歌单内歌曲
 				this.musics.push(...(response.data.playlist.tracks))
-				console.log("所有歌曲", this.musics)
 				//当前歌单图片
 				this.bgc_url = response.data.playlist.coverImgUrl
 				

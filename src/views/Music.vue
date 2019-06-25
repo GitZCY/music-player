@@ -190,38 +190,6 @@
         this.$refs.control.volume = this.$store.state.voice_size / 100
       },
 
-
-      //上一首
-//       last_one() {
-//         let musicLength = this.allMusic[0]
-// 
-//         let index = this.index
-// 
-//         if(index <= 0) {
-//           this.information = []
-//           this.information.push(musicLength[musicLength.length - 1])
-//           this.index = musicLength.length - 1
-//           this.changeHome()
-//         }else{
-//           if(this.information != null) {
-//             //清空当前存储歌曲的数组，重新push
-//             this.information = []
-//             this.information.push(musicLength[index-1])
-//             this.index = index - 1
-//             this.changeHome()
-//           }
-//         }
-
-        // for (var i = 0; i < musicLength.length; i++) {
-        // 	if(musicLength[i].name = this.information[0].name) {
-        // 		console.log(i)
-        // 		return
-        // 	}else{
-        //
-        // 	}
-        // }
-      // },
-
       //播放按钮
       discharge() {
         if(this.play) {
@@ -241,25 +209,6 @@
         }
       },
 
-      //下一首
-//       next_one() {
-//         let musicLength = this.allMusic[0]
-//         let index = this.index
-//         if(index >= this.allMusic[0].length - 1) {
-//           this.information = []
-//           this.information.push(musicLength[0])
-//           this.index = 0
-//           this.changeHome()
-//         }else{
-//           if(this.information[0] != null) {
-//             //清空当前存储歌曲的数组，重新push
-//             this.information = []
-//             this.information.push(musicLength[index+1])
-//             this.index = index + 1
-//             this.changeHome()
-//           }
-//         }
-//       },
 // 
       //更换歌曲
       changeHome() {
@@ -281,11 +230,8 @@
         }).then(lrc => {
             this.lrc = []
             this.newlrc = []
-            // console.log(lrc.data.lrc.lyric)
             let tag = /\[([^\[\]]+)\]/
             this.lrc.push(lrc.data.lrc.lyric)
-            // console.log("lrc ==> ", this.lrc)
-            // console.log("lrc ==> ", this.lrc[0])
             this.newlrc.push(this.lrc[0].split(tag))
             // console.log(this.lrc[0])
             // console.log(this.newlrc[0])
