@@ -928,6 +928,7 @@
 		.MusicList {
 			height: 65vh;
 			overflow-y: scroll;
+			overflow-x: hidden;
 			border-top-right-radius: 15px;
 			border-top-left-radius: 15px;
 		}
@@ -940,6 +941,10 @@
 			padding-left: 0.3rem;
 			height: 1rem;
 			border-bottom: 1px solid #929292;
+			position: sticky;
+			top: 0;
+			left: 0;
+			background-color: white;
 
 			span {
 				display: inline-block;

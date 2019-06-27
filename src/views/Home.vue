@@ -50,15 +50,11 @@
 		},
 		
 		created() {
-			//仓库中的主页下标
-			this.active = this.$store.state.Home_index
-			
+			this.active = this.$store.state.Home_index		
 		},
 		
         components: {
-            // "bottom-nav": BottomNav,
-            // [Tab.name]: Tab,
-            // [Tabs.name]: Tabs,
+            
         }
     }
 </script>
@@ -66,7 +62,7 @@
 <style lang="less" scoped>
 	.Home {
 		overflow: hidden;
-		padding-bottom: 1.6rem;
+		padding-bottom: 1.65625rem;
 	}
 	.box{
 		width: 100%;

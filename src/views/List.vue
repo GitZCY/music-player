@@ -186,10 +186,7 @@
 		
         created() {
 			let id = this.$route.params.pid
-			// if(this.$route.params.sign) {
-			// 	this.sign = this.$route.params.sign
-			// }
-			
+		
 			//请求歌单
             this.axios({
                 type: "GET",

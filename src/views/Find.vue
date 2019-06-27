@@ -311,8 +311,8 @@
 			
 			//搜索按钮
 			seach(flag) {
-				let leng = flag ? this.seachResult_single.length : 0
-				
+				let leng = flag ? this.seachResult_single.length + 1 : 0
+
 				let num = this.list
 				if(this.value.length == 0) {
 					return
@@ -612,8 +612,6 @@
 			transition: all 0.5s;
 		}
 	}
-	
-	//推荐歌单点击加载更多
 	
 	
 	//点击加号后旋转
