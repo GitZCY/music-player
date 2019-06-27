@@ -1,4 +1,6 @@
 ## music-player
+## 项目演示 
+![image](https://github.com/GitZCY/music-player/blob/master/music.gif)
 ### 借用node.js版api开发的音乐播放器 api地址:(https://github.com/Binaryify/NeteaseCloudMusicApi)
 ### clone后进入node.js版api
 ```cd /NeteaseCloudMusicApi```
