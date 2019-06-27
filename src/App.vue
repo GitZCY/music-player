@@ -243,8 +243,6 @@
 				this.$refs.control.currentTime = this.value / 100 * time
 
 				this.Progress_change()
-				console.log(this.lrc_content)
-				console.log(this.lrc_time)
 			},
 			
 			//改变歌音量
