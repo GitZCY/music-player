@@ -7,7 +7,7 @@
 		<div v-show="show_route">
 			<!-- 蒙层 --> 
 			<div class="div_bg" ref="bgc" >
-				
+				 
 			</div>
 		
 			<div class="div_topbg">
